@@ -1,6 +1,9 @@
 <template>
   <div>
+
     <app-header></app-header>
+    <aside-one></aside-one>
+
 
   </div>
 
@@ -9,8 +12,9 @@
 
 <script>
 import appHeader from "../components/Header";
+import asideOne from "../components/asideOne";
 export default {
-  components: {appHeader},
+  components: {appHeader,asideOne},
   name: "index"
 }
 </script>
