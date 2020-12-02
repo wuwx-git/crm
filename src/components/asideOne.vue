@@ -3,8 +3,12 @@
   <div id="aside" style="width: auto;">
     <el-menu background-color="#001529"
              text-color="#fff"
-             active-text-color="#ffd04b" default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen"
+             :default-active="activeIndex"
+             active-text-color="#ffd04b" class="el-menu-vertical-demo" @open="handleOpen"
+             collapse-transition="false"
              @close="handleClose"
+             v-model="itemkey"
+             router="true"
              :collapse="isCollapse"
              style="    font-size: 14px; padding: 0;  ">
       <el-menu-item index="1" class="mb10px">
@@ -30,12 +34,10 @@
         <span slot="title">待办事项</span>
       </el-menu-item>
       <el-menu-item index="4" class="mb10px">
-
         <span slot="title">线索</span>
       </el-menu-item>
-      <el-menu-item index="5" class="mb10px">
-
-        <span slot="title">客户</span>
+      <el-menu-item index="5" class="mb10px" route="/crm/customer">
+        <span slot="title" >客户</span>
       </el-menu-item>
       <el-menu-item index="6" class="mb10px">
 
@@ -68,6 +70,7 @@
       <el-menu-item></el-menu-item>
       <div>
         <el-switch id="switch" style="position: absolute;bottom: 0;padding: 10px 20px;cursor: pointer;right: 0;"
+
                    v-model="isCollapse" :change="test()">
         </el-switch>
       </div>
@@ -84,15 +87,22 @@ export default {
   name: "asideOne",
   data() {
     return {
-      isCollapse: false
+      isCollapse: false,
+      activeIndex: '',
     };
   },
   methods: {
     handleOpen(key, keyPath) {
-      console.log(key, keyPath);
+      alert(key + keyPath)
+      if (key == "5") {
+        location.href = "/#/crm/customer"
+      }
+
     },
     handleClose(key, keyPath) {
-      console.log(key, keyPath);
+      if (key == "5") {
+        location.href = "/#/crm/customer"
+      }
     },
     test() {
       test = this.isCollapse
@@ -100,10 +110,13 @@ export default {
       var mine = document.getElementById("mine")
       if (test) {
         apps.style.left = "85px"
-        mine.style.left = "83px"
+        if (mine != null)
+          mine.style.left = "83px"
       } else {
+        if (apps == null) return
         apps.style.left = "215px"
-        mine.style.left = "213px"
+        if (mine != null)
+          mine.style.left = "213px"
       }
     },
   }
