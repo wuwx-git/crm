@@ -7,7 +7,6 @@
              active-text-color="#ffd04b" class="el-menu-vertical-demo" @open="handleOpen"
              collapse-transition="false"
              @close="handleClose"
-             v-model="itemkey"
              router="true"
              :collapse="isCollapse"
              style="    font-size: 14px; padding: 0;  ">
@@ -25,7 +24,7 @@
           </div>
         </el-popover>
       </el-menu-item>
-      <el-menu-item index="2" class="mb10px">
+      <el-menu-item index="2" class="mb10px" route="/crm/workbench">
 
         <span slot="title">仪表盘</span>
       </el-menu-item>
@@ -37,7 +36,7 @@
         <span slot="title">线索</span>
       </el-menu-item>
       <el-menu-item index="5" class="mb10px" route="/crm/customer">
-        <span slot="title" >客户</span>
+        <span slot="title">客户</span>
       </el-menu-item>
       <el-menu-item index="6" class="mb10px">
 
@@ -105,21 +104,31 @@ export default {
       }
     },
     test() {
-      test = this.isCollapse
       var apps = document.getElementById("apps")
       var mine = document.getElementById("mine")
+      var mine2 = document.getElementById("mine2")
+      test = this.isCollapse
+
       if (test) {
-        apps.style.left = "85px"
-        if (mine != null)
-          mine.style.left = "83px"
+        this.timer = setTimeout(() => {
+          if (apps != null)
+            apps.style.left = "85px"
+          if (mine != null)
+            mine.style.left = "83px"
+          if (mine2 != null)
+            mine2.style.left = "86px"
+        }, 200)
       } else {
-        if (apps == null) return
-        apps.style.left = "215px"
+        if (apps != null)
+          apps.style.left = "215px"
         if (mine != null)
           mine.style.left = "213px"
+        if (mine2 != null)
+          mine2.style.left = "216px"
       }
-    },
-  }
+    }
+
+  },
 }
 </script>
 
