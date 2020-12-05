@@ -1,12 +1,14 @@
 <template>
   <div>
     <el-dialog
+      style="margin-top: 10px;margin-left: 20px"
       :title="title"
       :visible.sync="dialogVisible"
-      before-close="function(done)"
-      width="70%">
+      :modal-append-to-body="1==2"
+      :before-close="function(){dialogVisible=false}"
+      width="80%">
       <div>
-        <search class="search" style="margin: -69px 0px 12px 327px;"></search>
+        <search class="search" style="margin: -69px 0px 12px 327px;width: 55%"></search>
       </div>
       <el-table
         :data="list"
@@ -44,18 +46,17 @@
 <script>
 
 import CurrentPage from "./currentPage";
+import Search from "./search";
+
 export default {
   name: "salesKit",
-  components: {CurrentPage},
+  components: {Search, CurrentPage},
   props: ["title", "dialogVisible", "list", "fieldList", "total"],
   data() {
     return {
       total: 0
     }
-  },
-  methods: {
-
-
+  }, methods: {
 
   }
 

@@ -9,11 +9,12 @@
          left: 216px;
           top: 57px;
         right: 15px;">
+        <div style=" position: absolute; width: 100% ;height: 50px;background:#f5f6f9">
         <div class="box" style="width: 120px;">
           <div>
-            <el-button circle type="primary" size="mini" style="position: absolute;z-index: 1;"><i
+            <el-button circle type="primary" size="mini" style="position: absolute;"><i
               class="el-icon-user-solid"></i></el-button>
-            <el-select v-model="value" placeholder="请选择" size="mini" style="width: 125px;z-index: 2">
+            <el-select v-model="value" placeholder="请选择" size="mini" style="width: 125px;">
               <el-option
                 v-for="item in options"
                 :key="item.value"
@@ -26,7 +27,10 @@
         </div>
         <div class="box" style="width: 190px;margin-left: 140px;">
           <div class="yuer">
-            <el-select v-model="value2" placeholder="请选择" size="mini" style="width:190px">
+            <el-select v-model="value2"
+
+                       @change="function2(value2)"
+                       placeholder="请选择" size="mini" style="width:190px">
               <el-option
                 v-for="item in options2"
                 :key="item.value2"
@@ -37,49 +41,85 @@
           </div>
 
         </div>
-        <div class="box" style="width: 98%;margin-top: 50px;padding-left:  30px">
+        </div>
+          <div id="mine3" style="
+      position: fixed;
+      padding: 0px 0px 10px;
+      overflow: auto;
+      height:650px ;
+         left: 216px;
+          top: 57px;
+        right: 15px;">
+          <div class="box" style="width: 97%;margin-top: 50px;padding-left:  30px">
           <span>
             <h4><i class="icon el-icon-data-line"
                    style="color:  rgb(80, 207, 158);font-size: 18px;margin-right: 1px"></i>
              销售简报</h4>
           </span>
-          <div class="boxson " style="margin-left:-15px" @click="getSalesKit('新增客户')">
+            <div  class="boxson" style="margin-left:-15px" @click="getSalesKit('新增客户')">
+              <small-box src="/static/img/客户.png" box-title="新增客户(人)" :total="list.length" :stage="stage"
+                         percentage="0%"></small-box>
 
+            </div>
 
+            <div class="boxson"  style="margin-top: -98px;margin-left: calc(25% - 5px)"
+                     @click="getSalesKit('新增联系人')">
+              <small-box src="/static/img/联系人.png" box-title="新增联系人(人)" :total="list.length" :stage="stage"
+                         percentage="0%"></small-box>
+
+            </div>
+
+            <div class="boxson"  style="margin-top: -98px;margin-left: calc(50% - 5px)"
+                     @click="getSalesKit('新增商机')">
+              <small-box src="/static/img/商机.png" box-title="新增商机(个)" :total="list.length" :stage="stage"
+                         percentage="0%"></small-box>
+
+            </div>
+
+            <div class="boxson"  style="margin-top: -98px;margin-left: calc(75% - 5px)"
+                     @click="getSalesKit('新增合同')">
+              <small-box src="/static/img/合同.png" box-title="新增合同(个)" :total="list.length" :stage="stage"
+                         percentage="0%"></small-box>
+
+            </div>
+            <div class="boxson"  style="margin-left: -15px" @click="getSalesKit('合同金额')">
+              <small-box src="/static/img/客户.png" box-title="合同金额(元)" :total="list.length+'.00'" :stage="stage"
+                         percentage="0%"></small-box>
+
+            </div>
+            <div class="boxson"  style="margin-top: -98px;margin-left: calc(25% - 5px)"
+                     @click="getSalesKit('商机金额')">
+              <small-box src="/static/img/客户.png" box-title="商机金额(元)" :total="list.length+'.00'" :stage="stage"
+                         percentage="0%"></small-box>
+
+            </div>
+
+            <div class="boxson"  style="margin-top: -98px;margin-left:calc(50% - 5px)  "
+                     @click="getSalesKit('回款金额')">
+              <small-box src="/static/img/回款.png" box-title="回款金额(元)" :total="list.length+'.00'" :stage="stage"
+                         percentage="0%"></small-box>
+
+            </div>
+
+            <div class="boxson"  style="margin-top: -98px;margin-left: calc(75% - 5px)  "
+                     @click="getSalesKit('新增跟进记录')">
+              <small-box src="/static/img/客户.png" box-title="新增跟进记录(条)" :total="list.length" :stage="stage"
+                         percentage="0%"></small-box>
+
+            </div>
           </div>
-
-          <div class="boxson" style="margin-top: -98px;margin-left: calc(25% - 5px)" @click="getSalesKit('新增联系人')">
-
-          </div>
-
-          <div class="boxson" style="margin-top: -98px;margin-left: calc(50% - 5px)" @click="getSalesKit('新增商机')">
-
-          </div>
-
-          <div class="boxson" style="margin-top: -98px;margin-left: calc(75% - 5px)" @click="getSalesKit('新增合同')">
-
-          </div>
-          <div class="boxson" style="margin-left: -15px" @click="getSalesKit('合同金额')"></div>
-          <div class="boxson" style="margin-top: -98px;margin-left: calc(25% - 5px)" @click="getSalesKit('商机金额')">
-
-          </div>
-
-          <div class="boxson" style="margin-top: -98px;margin-left:calc(50% - 5px)  " @click="getSalesKit('回款金额')">
-
-          </div>
-
-          <div class="boxson" style="margin-top: -98px;margin-left: calc(75% - 5px)  " @click="getSalesKit('新增跟进记录')">
-
+          <sales-kit :title="title"
+                     :dialog-visible="dialogVisible"
+                     :field-list="fieldList"
+                     :total="total"
+                     :list="list"></sales-kit>
+          <div class="box" style="margin-top: 340px">
+            <StatisticalChart></StatisticalChart>
           </div>
         </div>
-        <sales-kit :title="title"
-                   :dialog-visible="dialogVisible"
-                   :field-list="fieldList"
-                   :total="total"
-                   :list="list"></sales-kit>
-
       </div>
     </div>
+
   </div>
 </template>
 
@@ -90,9 +130,11 @@ import salesKit from "../../../components/salesKit";
 import CurrentPage from "../../../components/currentPage";
 import Scene from "../../../components/scene";
 import Search from "../../../components/search";
+import SmallBox from "../../../components/SmallBox";
+import StatisticalChart from "../../../components/StatisticalChart";
 
 export default {
-  components: {Search, Scene, CurrentPage, appHeader, asideOne, salesKit},
+  components: {StatisticalChart, SmallBox, Search, Scene, CurrentPage, appHeader, asideOne, salesKit},
   name: "index",
   data() {
     return {
@@ -153,7 +195,7 @@ export default {
       list: [],
       fieldList: [],
       total: 0,
-
+      stage: '较上月',
     }
   }, methods: {
 
@@ -162,6 +204,7 @@ export default {
     },
 
     getSalesKit(title) {
+
 
       this.extracted(title)
       this.title = "销售简报-" + title
@@ -306,12 +349,55 @@ export default {
       this.list = list
 
       this.total = list.length;
+    },
+    function2(val) {
+      let list = this.options2
+      let list2 = [{
+        value2: '选项1',
+        label2: '较前天'
+      }, {
+        value2: '选项2',
+        label2: '较昨天'
+      }, {
+        value2: '选项3',
+        label2: '较上周'
+      }, {
+        value2: '选项4',
+        label2: '较前周'
+      }, {
+        value2: '选项5',
+        label2: '较上月'
+      }, {
+        value2: '选项6',
+        label2: '较前月'
+      }, {
+        value2: '选项7',
+        label2: '较上季度'
+      }, {
+        value2: '选项8',
+        label2: '较前季度'
+      }, {
+        value2: '选项9',
+        label2: '较去年'
+      }, {
+        value2: '选项10',
+        label2: '较去年'
+      },]
+      for (let i = 0; i < list.length; i++) {
+        if (list[i].value2 == val) {
+          if (list2.length <= i) {
+            this.stage = ''
+            return;
+          }
+          this.stage = list2[i].label2
+          return
+        }
+      }
+      console.log(val)// 此时打印的直接就是id
     }
 
 
   }
-
-
 }
 </script>
 
@@ -340,6 +426,11 @@ export default {
   margin: 10px;
   text-align: left;
 
+}
+
+.boxContent {
+  position: absolute;
+  margin: 25px;
 }
 
 .box >>> .el-input__inner {

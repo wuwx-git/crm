@@ -85,10 +85,13 @@
                 </div>
                 <div>
                   <el-drawer
-                    modal-append-to-body="false"
                     :title="scope.row.Cname"
-                             :visible="scope.row.drawer"
-                             size="65%">
+                    :visible="scope.row.drawer"
+                    :modal-append-to-body="1==2"
+                    :before-close="function() {
+                      scope.row.drawer=false
+                    }"
+                    size="65%">
                     <h2 v-text="scope.row.Cname" style="padding: 20px"></h2>
                   </el-drawer>
                 </div>

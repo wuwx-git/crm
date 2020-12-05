@@ -107,6 +107,8 @@ export default {
       var apps = document.getElementById("apps")
       var mine = document.getElementById("mine")
       var mine2 = document.getElementById("mine2")
+      var mine3 = document.getElementById("mine3")
+
       test = this.isCollapse
 
       if (test) {
@@ -117,6 +119,8 @@ export default {
             mine.style.left = "83px"
           if (mine2 != null)
             mine2.style.left = "86px"
+          if (mine3 != null)
+            mine3.style.left = "86px"
         }, 200)
       } else {
         if (apps != null)
@@ -125,6 +129,8 @@ export default {
           mine.style.left = "213px"
         if (mine2 != null)
           mine2.style.left = "216px"
+        if (mine3 != null)
+          mine3.style.left = "216px"
       }
     }
 

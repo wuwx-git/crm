@@ -13,9 +13,11 @@
 <script>
 import appHeader from "../components/Header";
 import asideOne from "../components/asideOne";
+const echarts=require('echarts')
 export default {
-  components: {appHeader,asideOne},
-  name: "index"
+
+  components: {appHeader, asideOne},
+  name: "index",
 }
 </script>
 
